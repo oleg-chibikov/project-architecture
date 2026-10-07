@@ -7,3 +7,6 @@
   tickets.
 - [UI Settings Platform](./ui-settings-platform/README.md): a person picks a
   theme once and every Atlassian app shows it, loaded during server rendering.
+- [Build pipeline optimisation](./build-pipeline/README.md): the Atlaskit
+  website build went from 1 to 2 hours to about 7 minutes with Rspack and
+  selective branch builds.
