@@ -25,6 +25,8 @@ paint already has the right theme.
 
 - **Product apps.** Jira, Confluence, Home and Studio. Each had its own SSR
   setup and its own level of GraphQL support.
+- **Workspaces.** A company could run several instances of one app, for
+  example two Jira instances. Each instance of an app was a workspace.
 - **SettingsService.** An existing Atlassian service for user settings. It
   stores data in ERS, a store built on DynamoDB, with a Redis cache in front.
 - **GraphQL Gateway.** The shared GraphQL endpoint the apps call.
