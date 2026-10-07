@@ -63,7 +63,16 @@ it had no residency limits.
 
 ## Onboarding: spotlight or modal
 
-The designer wanted a full-page modal. The shared criteria were:
+The designer pushed for a full-page modal. I talked to the product teams and
+brought their feedback back to the designer:
+
+- **Too intrusive.** Product people didn't want a modal over every page.
+- **Pollinator could fail.** These synthetic tests run against live pages. A
+  modal on top could break them.
+- **Skewed metrics.** A blocking modal changes page metrics and running
+  experiments.
+
+The designer's goal was discoverability. We agreed on the criteria first:
 
 - **Discoverable.** People find the new switcher.
 - **Low interruption.** Work goes on.
@@ -75,7 +84,9 @@ The designer wanted a full-page modal. The shared criteria were:
 | Full-page modal | Hard to miss | Blocks work, skews metrics, breaks Pollinator tests |
 | Spotlight next to the switcher (picked) | Shows the feature where it lives | Easier to miss |
 
-PostOffice sends the spotlight. In Studio its setup showed messages on one page
+The designer agreed to the spotlight. It goes through PostOffice too.
+
+In Studio the PostOffice setup showed messages on one page
 only. The Studio team had no time, so I fixed it and walked them through the
 change.
 

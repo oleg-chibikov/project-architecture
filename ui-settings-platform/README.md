@@ -203,5 +203,5 @@ How success is measured:
 - **Contracts and a mock API first.** Frontend and backend moved in parallel.
 - **Do the integration for partner teams.** AI made writing it in each product
   codebase cheap. Partner teams reviewed it instead of building it.
-- **Agree on criteria before options.** The onboarding debate ended once design
-  and engineering shared the same criteria.
+- **Bring feedback to a design debate.** Product teams' feedback and the
+  Pollinator risk moved the designer from a modal to a spotlight.
