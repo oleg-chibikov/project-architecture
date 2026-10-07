@@ -13,3 +13,5 @@
 - [Tokens performance](./tokens-performance/README.md): codemods removed
   hard-coded fallbacks from design token calls. Pages ship up to 90 KB less
   CSS.
+
+[Values questions](./values.md): short answers, each backed by a project.
