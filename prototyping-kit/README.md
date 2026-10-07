@@ -2,13 +2,42 @@
 
 The full architecture, phase by phase, is in [detailed.md](./detailed.md).
 
-## The pitch
-
 A designer or PM asks Claude for a screen. The kit builds a working prototype
 from the real design system, checks it, and shares a link. An engineer can lift
 the code instead of starting from scratch.
 
-## The big picture
+## Problem
+
+- **Prototypes got thrown away.** Figma mockups and AI demos looked right, but
+  engineers rebuilt every screen from scratch.
+- **Designers couldn't build in code.** The repo needs a dev setup, Node, git
+  and knowledge of the design system.
+- **An AI agent alone drifts.** It made up colours, skipped steps and stopped
+  halfway.
+- **Tokens drifted from Figma.** web-platform held hand-copied CSS, and a
+  person guessed each package version.
+
+## Context
+
+- **Mitti design system.** Figma tokens, the `shift-ui` components and
+  standard page layouts.
+- **web-platform.** A monorepo of micro-frontends with a sandbox app for
+  experiments, deployed to Sandpit, the test copy of the product.
+- **Authors.** Designers and PMs on a Mac with Claude Desktop, most with no
+  terminal experience.
+- **Tokens.** One npm package fed both web apps, still shipping a legacy set
+  next to Mitti.
+
+## My ownership
+
+- **Prototyping kit.** I designed and built it end to end: the Claude skill,
+  the CLI, the hooks, the launcher plugin and the author runbook.
+- **Design system for agents.** I wrote `DESIGN.md` and the design-system skill
+  so an agent can follow the rules.
+- **Tokens rework.** I wrote the ADR and built the generator that turns the
+  package into web-platform CSS.
+
+## Architecture
 
 ```mermaid
 flowchart LR
@@ -22,8 +51,6 @@ flowchart LR
   Jira -.-> Team["Platform team<br/>improves the kit"]
   Team -.-> Kit
 ```
-
-## How a run goes
 
 The author answers a few questions. Claude does the rest and pings the Mac
 whenever it needs them.
@@ -43,8 +70,6 @@ flowchart TD
   Done --> Eng["Engineer review"]
 ```
 
-## Design tokens pipeline
-
 Figma changes reach the code with no one copying values or guessing a version.
 
 ```mermaid
@@ -62,42 +87,92 @@ flowchart LR
   WP --> Agent["Claude builds with them"]
 ```
 
-## The story
+## Decisions
 
-- **Situation.** Prototypes from Figma got thrown away, and engineers rebuilt
-  each screen. An AI agent left alone made up colours and stopped halfway.
-- **Task.** Let a non-engineer get a prototype in production-quality code on
-  the design system.
-- **Action.** Put Claude on rails: one step at a time, the author approving
-  each decision, and every step checked by code. Gave it the design system as
-  rules it can read. Made the agent report where the kit slowed it down.
-- **Action, tokens.** Replaced hand-copied CSS and hand-picked versions with a
-  pipeline that syncs from Figma and picks the version itself.
-- **Result.** Your numbers here: prototypes built, code engineers kept, findings
-  fixed.
-
-## Decisions I'd defend
-
-- **Sandbox only.** A product app is another team's code and release. Moving a
-  prototype there is engineering work for later.
+- **Sandbox only.** Every prototype is a page in the sandbox app, on its own
+  unmerged branch.
 - **Code over prompts.** When the agent got a step wrong twice, the step moved
-  from instructions into a script. Scripts behave the same every run.
+  from instructions into a script.
+- **One subagent per phase.** Build, verify and CI each run in a fresh context
+  with their own rules.
 - **The design system wins.** A colour the system lacks snaps to the nearest
   token, and Claude tells the author.
-- **The machine picks the version.** Almost every token PR is a Figma sync, so
-  a person choosing patch or minor was guessing. A human label covers the one
-  case code can't judge: a restyle that keeps every name.
-- **Visible changes are minor.** Tokens are a visual system. A restyle shipped
-  as a patch would reach apps unseen.
+- **The machine picks the token version.** The pipeline diffs the token list
+  against the last release. Visible changes are minor, removals are major.
 
-## Questions they may ask
+## Trade-offs
 
-- **What was hardest?** Keeping the agent going. It ended turns mid-run, so
-  hooks block the stop until something will wake it.
-- **How do you know the output is good?** Claude compares its screenshot with
-  the design, runs the product's lint and tests, and the engineer rates each
-  part keep, rework or rewrite.
-- **How does it get better?** Each run files what slowed it down. The platform
-  team fixes those, so the next run hits fewer walls.
-- **Why not changesets for tokens?** Changesets asks a person per PR. Here the
-  diff of the token list already says what changed.
+- **Sandbox only** keeps product teams safe. Moving a prototype into a product
+  app stays engineering work.
+- **Scripts** behave the same every run. They cost more to change than a line
+  of instructions.
+- **Subagents** keep each phase focused. A run takes longer and spends more
+  tokens.
+- **Minor for visible changes** means a minor release can look different on
+  screen. Apps that need pixel stability pin exact versions.
+- **Automatic versioning** can't judge how dramatic a restyle is. A PR label
+  lets a person escalate to major.
+
+## Delivery
+
+- **Small PRs.** The kit grew from a first workflow PR on 9 September into the
+  full run in about a month. Each change has its own ticket.
+- **Dogfooding.** Real prototypes ran through the kit, and their findings set
+  what came next.
+- **Distribution.** A Claude plugin installs in two commands, and a runbook in
+  Confluence walks authors through each step.
+- **Tokens in phases.** The ADR splits the rework so each phase ships alone:
+  generator first, legacy removal once both apps migrated, then automatic
+  versioning before automatic Figma sync.
+
+## Risk
+
+- **A prototype reaching production.** The branch is not for merging, and its
+  PR title check stays red on purpose.
+- **Credentials.** The author signs in to Sandpit and Atlassian themselves. The
+  kit holds no passwords.
+- **Breaking token consumers.** Removing legacy tokens ships as one major, after
+  both web apps have a migration ready.
+- **Figma outages.** Downloads land as commits, so a release builds the same
+  output with Figma down.
+
+## Validation
+
+- **Against the design.** Claude puts its screenshot next to the input and
+  fixes differences until they match.
+- **Like product code.** Typecheck, lint, tests and i18n checks run locally and
+  again in CI.
+- **By an engineer.** Each part of a prototype gets keep, rework or rewrite on
+  the PR.
+- **Tokens.** CI fails when someone edits generated CSS by hand. The PR shows the
+  token diff and the version it will cause.
+
+## Metrics
+
+Fill in your numbers before the interview:
+
+- **Adoption.** Prototypes built, and how many authors built them.
+- **Speed.** Time from ask to Sandpit link. The build step alone takes 5 to 20
+  minutes.
+- **Quality.** Share of parts engineers rated keep.
+- **Kit health.** Findings filed per run, and how many got fixed.
+
+## Failure
+
+- **The agent stopped mid-run.** Authors thought it was done. A hook now blocks
+  the stop until something will wake the session.
+- **Findings went missing.** Parallel filing could clobber the notes file. Each
+  write now goes through a temp file and a lock.
+- **Tokens drifted silently.** web-platform copied CSS by hand, and nobody saw
+  Figma move on. The generator and its CI check replaced the copy.
+
+## Lessons
+
+- **Give the agent rails.** Free-form instructions fail quietly. A script plus
+  a gate fails loudly and early.
+- **Give the agent a voice.** Findings showed where the kit was weak faster
+  than any review.
+- **Design for the least technical user.** One question at a time, a
+  notification when input is needed, no terminal past setup.
+- **Keep people on judgement calls.** People merge the Figma sync, label a
+  restyle and decide to publish. Code does the rest.
