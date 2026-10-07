@@ -5,3 +5,5 @@
 - [Accessibility tooling](./accessibility-tooling/README.md): a codemod adds an
   axe-core check to existing tests. New violations fail CI, old ones become
   tickets.
+- [UI Settings Platform](./ui-settings-platform/README.md): a person picks a
+  theme once and every Atlassian app shows it, loaded during server rendering.
