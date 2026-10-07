@@ -122,7 +122,9 @@ flowchart TD
 
 1. **Analyse.** I compared every fallback with its token's value and split
    the calls into safe and risky.
-2. **Add the Babel plugin.** Products that lacked it got it first.
+2. **Add the Babel plugin.** Products that lacked it got it first. Unit tests
+   ran without the plugin too, and some asserted fallback values. Turning the
+   plugin on for tests meant updating many of them to expect the token.
 3. **Sweep safe fallbacks.** The codemod removed fallbacks equal to the token
    value in broad runs.
 4. **Team PRs for the rest.** A script grouped risky calls by owning team and
