@@ -201,3 +201,7 @@ All of it fit around the deadlines of my main project.
   try.
 - **Shared pain needs an owner.** The build slowed for months with no team
   watching it.
+
+---
+
+[Design notes](./design-notes.md) · [All projects](../README.md)

@@ -221,3 +221,7 @@ How success is measured:
   codebase cheap. Partner teams reviewed it instead of building it.
 - **Bring feedback to a design debate.** Product teams' feedback and the
   Pollinator risk moved the designer from a modal to a spotlight.
+
+---
+
+[Design notes](./design-notes.md) · [All projects](../README.md)

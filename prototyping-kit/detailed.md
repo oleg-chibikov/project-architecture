@@ -140,3 +140,7 @@ flowchart LR
   CSS --> Code
   Lint["ESLint + i18n rules"] -->|verify fails on a break| Code
 ```
+
+---
+
+[Back to the overview](./README.md) · [All projects](../README.md)

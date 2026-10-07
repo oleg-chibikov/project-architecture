@@ -131,3 +131,7 @@ change.
   redesign during testing.
 - **Map legacy pages early.** The Jira monolith pages came up only in
   dogfooding, as extra scope.
+
+---
+
+[Back to the overview](./README.md) · [All projects](../README.md)

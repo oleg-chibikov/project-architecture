@@ -170,3 +170,7 @@ flowchart TD
   the off switch.
 - **Close the door after the cleanup.** A lint rule keeps the gain.
 - **Measure what people feel.** Bytes saved matter when LCP moves.
+
+---
+
+[Design notes](./design-notes.md) · [All projects](../README.md)

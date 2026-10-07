@@ -189,3 +189,7 @@ How the kit's success is measured:
   notification when input is needed, no terminal past setup.
 - **Keep people on judgement calls.** People merge the Figma sync, label a
   restyle and decide to publish. Code does the rest.
+
+---
+
+[Detailed architecture](./detailed.md) · [All projects](../README.md)

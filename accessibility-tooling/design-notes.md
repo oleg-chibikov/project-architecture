@@ -100,3 +100,7 @@ code and the PR that caused it.
   and suppressed rules. Suppressions already get their own tickets, so the data
   is there. The head of engineering sees which teams skip accessibility and
   follows up with them.
+
+---
+
+[Back to the overview](./README.md) · [All projects](../README.md)

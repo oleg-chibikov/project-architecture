@@ -1,6 +1,6 @@
 # Design notes: Build pipeline optimisation
 
-[Back to the project](./README.md)
+[Back to the overview](./README.md) · [All projects](../README.md)
 
 ## What the build time chart showed
 
@@ -68,3 +68,7 @@ These are known Webpack traits. I didn't profile the build for each one.
   alert when the trend climbs.
 - **Profile before testing steps.** A build profile shows which phase grew,
   faster than turning steps off one by one.
+
+---
+
+[Back to the overview](./README.md) · [All projects](../README.md)

@@ -186,3 +186,7 @@ How success is measured:
   one who asks.
 - **Fewer violations is a first sign.** Proof that real users have it easier
   needs an audit or user reports.
+
+---
+
+[Design notes](./design-notes.md) · [All projects](../README.md)

@@ -1,6 +1,6 @@
 # Design notes: Tokens performance
 
-[Back to the project](./README.md)
+[Back to the overview](./README.md) · [All projects](../README.md)
 
 ## Why fallbacks cost CSS
 
@@ -57,3 +57,7 @@ each repository the migration touched. New code can't bring the CSS back.
 - **Turn the lint rule on earlier.** As a warning from day one, it would stop
   new fallbacks landing during the migration.
 - **Measure each stage.** Numbers per stage would show which one gave the most.
+
+---
+
+[Back to the overview](./README.md) · [All projects](../README.md)
