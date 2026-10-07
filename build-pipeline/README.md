@@ -99,7 +99,8 @@ flowchart LR
   leaves spikes. A smooth rise points at the size of the build.
 - **Rspack as the bundler.** It runs in Rust on every CPU core with no garbage
   collector. Its built-in SWC loader transpiles about 20 times faster than
-  `babel-loader`.
+  `babel-loader`. Many teams in the company already used Rspack and reported
+  much faster builds.
 - **Rspack over Vite.** Rspack reads the Webpack config and runs most Webpack
   loaders and plugins. The first working build took a couple of days. Vite
   would have meant rewriting the config and replacing every plugin.
