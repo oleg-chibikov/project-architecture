@@ -162,10 +162,13 @@ How success is measured:
 
 ## Failure
 
-- **I leaned on the principal engineer too much.** Early on I brought him many
-  small decisions. His feedback: work more on my own and own the project.
-- **What changed.** I started bringing a proposal with trade-offs instead of a
-  question. We wrote a RACI matrix, and talks moved to the key decisions only.
+- **Decision rights were unclear at the start.** The scope was still open.
+  Small calls went to the principal engineer along with the big ones, and that
+  slowed the team.
+- **The fix.** We wrote a RACI matrix together. I owned the day-to-day calls
+  and brought him the key decisions with options and a pick.
+- **The result.** Decisions moved faster, and his time went to the calls that
+  needed it.
 
 ## Lessons
 
