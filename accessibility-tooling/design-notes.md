@@ -42,8 +42,8 @@ code and the PR that caused it.
 
 ### Why old violations don't fail the build
 
-- **A red day one gets switched off.** Hundreds of failing builds kill trust in
-  the gate.
+- **A check that fails on the first day gets deleted.** Teams with hundreds of
+  red builds skip or remove the check to get CI green again.
 - **Fairness.** A PR fails for what it adds. Old debt goes to the team that owns
   it, with a deadline.
 
@@ -70,8 +70,8 @@ code and the PR that caused it.
 
 ## Getting teams on board
 
-- **Day one stays green.** Nothing changes for a team today. It just can't add
-  new problems.
+- **Builds stay green on the first day.** Nothing breaks for a team that
+  adopts the check. It only stops new problems.
 - **Old debt has an owner.** EngHealth puts each existing violation on the
   owning team's backlog, with a deadline by severity.
 - **Lint keeps the check in.** An ESLint rule flags a relevant test file with

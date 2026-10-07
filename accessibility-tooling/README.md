@@ -134,8 +134,9 @@ flowchart TD
 
 - **False alarms kill trust.** A moved violation counted as new fails a PR
   unfairly. Baseline matching had to survive refactors.
-- **Teams turning the check off.** A check that fails on day one gets
-  disabled. The baseline keeps day one green, so teams leave it on.
+- **Teams deleting the check.** If the new check had failed lots of builds on
+  the first day, teams would delete it or skip it to get CI green again. The
+  baseline lets every build pass on the first day, so teams keep the check.
 - **Skipping the check.** The ESLint rule flags test files that leave it out.
 - **Flaky scans.** In Playwright, color contrast failed at random while CSS
   transitions were still running. The check now waits for animations to end.
