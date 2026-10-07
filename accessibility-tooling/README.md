@@ -99,8 +99,10 @@ flowchart TD
 ## Trade-offs
 
 - **The baseline** lets the gate go on and stay on. Old debt shrinks slower.
-- **Tests see only tested code.** A component with no test is invisible to the
-  check.
+- **Tests over a crawler on the live site.** A crawler finds a problem after
+  release. A test finds it in the PR that adds it. A crawler reaches a dialog
+  only if someone scripts the clicks. Tests already make those clicks. The cost:
+  a component with no test is invisible to the check.
 - **axe-core finds part of WCAG.** It can't judge reading order, error text or
   keyboard flow. It is the automated floor.
 - **Each scan costs CI time.** At this scale the extra minutes add up.

@@ -14,8 +14,17 @@ code and the PR that caused it.
 | ESLint `jsx-a11y` | Fast and cheap | The rendered page, ARIA set at runtime |
 | Design system rules | One fix reaches every consumer | Custom components, how parts combine |
 | Manual audit, browser extension | Finds what tools can't | Doesn't scale, runs only when someone remembers |
-| Crawler on staging | The real app | Late, gives a URL instead of code |
+| Crawler on the live site | The real app | Finds problems after release, misses states behind clicks |
 | Check inside tests (picked) | Runs on every PR, points at code | Untested code |
+
+### Why no crawler on the live site
+
+- **Too late.** The crawler finds a problem after release. By then the PR author
+  has moved on, and the fix waits in a backlog.
+- **Misses interactions.** A dialog shows only after a click. A crawler needs a
+  script for each path, and the tests already make those clicks.
+- **No pointer to code.** The crawler reports a URL. Someone still has to find
+  the component.
 
 ## How the codemod works
 
