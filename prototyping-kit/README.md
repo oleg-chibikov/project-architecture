@@ -1,5 +1,7 @@
 # Prototyping kit: interview notes
 
+[Back to all projects](../README.md)
+
 The full architecture, phase by phase, is in [detailed.md](./detailed.md).
 
 A designer or PM asks Claude for a screen. The kit builds a working prototype

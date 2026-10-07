@@ -1,6 +1,6 @@
 # Prototyping kit: detailed architecture
 
-The short version for interviews is in [README.md](./README.md).
+[Back to the interview notes](./README.md) · [All projects](../README.md)
 
 An author asks Claude for a screen. The kit builds it in the sandbox app from
 the real design system, checks it, and shares a draft PR with a Sandpit link.
