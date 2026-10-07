@@ -98,15 +98,25 @@ How a page gets its theme:
 
 ```mermaid
 sequenceDiagram
+  participant Browser
   participant Server as App server
   participant GQL as GraphQL Gateway
-  participant Browser
+  participant Settings as SettingsService
+  participant DB as Redis cache and ERS
+  Browser->>Server: open a page
   Server->>GQL: preloadTheme (Relay loadQuery)
+  GQL->>Settings: getResolvedTheme
+  Settings->>DB: read global and workspace themes
+  DB-->>Settings: themes
+  Settings-->>GQL: resolved theme
   GQL-->>Server: resolved theme
-  Server->>Browser: HTML with the theme in bootstrap data
+  Server-->>Browser: HTML with the theme in bootstrap data
   Browser->>Browser: ThemeLoader finds it and skips the fetch
   Note over Browser: No bootstrap data: ThemeLoader fetches on the client
-  Browser->>GQL: updateTheme mutation when the person switches
+  Browser->>Server: updateTheme mutation when the person switches
+  Server->>GQL: updateTheme mutation
+  GQL->>Settings: save the theme
+  Settings->>DB: write
 ```
 
 The GraphQL operations:
