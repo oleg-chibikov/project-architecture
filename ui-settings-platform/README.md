@@ -40,8 +40,9 @@ paint already has the right theme.
 - **Feature lead.** I planned the architecture and the milestones. I owned
   delivery end to end. I led 2 mid-level engineers, an intern and a designer.
   I split the work like this:
-  - **First the build.** One engineer took the backend, and I took the
-    frontend.
+  - **First the build.** I wrote the first backend and took the frontend.
+    One engineer then extended the backend, for example with cleanup on
+    account deletion.
   - **Then product adoption.** Both engineers moved to integrating each
     product.
   - **Increased contrast mode.** The intern built it.
