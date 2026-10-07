@@ -39,17 +39,19 @@ paint already has the right theme.
 
 - **Feature lead.** I planned the architecture and the milestones. I owned
   delivery end to end. I led 2 mid-level engineers, an intern and a designer.
-  - **Backend.** One engineer helped me build it.
-  - **Product rollout.** The other engineer helped integrate each product.
+  I split the work like this:
+  - **First the build.** One engineer took the backend, and I took the
+    frontend.
+  - **Then product adoption.** Both engineers moved to integrating each
+    product.
   - **Increased contrast mode.** The intern built it.
 - **Decisions with stakeholders.** I ran the data model and design decisions
   with Design System, backend, design, content and product teams.
 - **Hands on.** I built the shared frontend packages and the metrics
   dashboards. I wrote backend code in Java and built the GraphQL API with its
   tests.
-- **Product integration.** The rollout engineer and I wrote much of the
-  integration code in the product codebases. Partner teams had far less to
-  build.
+- **Product integration.** The team wrote much of the integration code in
+  the product codebases. Partner teams had far less to build.
 - **Knowledge sharing.** I presented the design at the Regional Design Review
   and taught backend and GraphQL inside the Design System team. I mentored the
   intern.
