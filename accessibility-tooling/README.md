@@ -134,8 +134,8 @@ flowchart TD
 
 - **False alarms kill trust.** A moved violation counted as new fails a PR
   unfairly. Baseline matching had to survive refactors.
-- **Teams switching the check off.** A green day one gave them little reason
-  to.
+- **Teams turning the check off.** A check that fails on day one gets
+  disabled. The baseline keeps day one green, so teams leave it on.
 - **Skipping the check.** The ESLint rule flags test files that leave it out.
 - **Flaky scans.** In Playwright, color contrast failed at random while CSS
   transitions were still running. The check now waits for animations to end.
@@ -146,8 +146,9 @@ flowchart TD
   violations over time, the error types and the components that need the most
   work.
 - **EngHealth.** Tickets closed against their deadline.
-- **The limit.** A violation count is a proxy. Proof of a better experience
-  needs an audit or fewer user complaints.
+- **What the dashboards can't show.** They count what axe-core finds. Whether
+  the product got easier for keyboard and screen reader users needs a manual
+  audit or user reports.
 
 ## Metrics
 
@@ -173,5 +174,5 @@ How success is measured:
 - **Automate adoption.** A codemod beats asking teams to write tests.
 - **Bring a proposal.** A lead who brings options and a pick moves faster than
   one who asks.
-- **A count is a proxy.** Fewer axe violations is an early signal. Real proof
-  needs audits or user reports.
+- **Fewer violations is a first sign.** Proof that real users have it easier
+  needs an audit or user reports.

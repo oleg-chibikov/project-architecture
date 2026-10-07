@@ -86,8 +86,8 @@ code and the PR that caused it.
   person.
 - **Untested code is invisible.** The ESLint rule only makes sure existing test
   files include the check.
-- **A count is a proxy.** Fewer violations is an early signal. Proof of a better
-  experience needs an audit or fewer user complaints.
+- **Fewer violations is a first sign.** Proof that real users have it easier
+  needs an audit or user reports.
 
 ## What I would change
 
