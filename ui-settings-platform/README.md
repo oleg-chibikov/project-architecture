@@ -122,20 +122,31 @@ The GraphQL operations:
 
 ## Trade-offs
 
-- **SettingsService over a cookie, the old app backends or the account.** A
-  cookie lives in one browser. Synced backends drift apart. The account has no
-  room for workspace overrides. The cost: the team had to add static
-  partitions, replication and deletion to SettingsService.
-- **Global replication over the home region or the request region.** Reads
-  stay fast everywhere. The home region is slow when a person travels. The
-  request region shows different settings in each region. The cost: a copy in
-  every region, and the data is small.
-- **An SSR preload over loading the theme in the browser.** The first paint
-  shows the right theme. The cost: a GraphQL call in each server render.
-- **One theme string over a field per setting.** A new setting is a new key
-  with no schema change. The cost: the backend can't query single values.
-- **A flag per app over one switch for every app.** Each team picks its pace.
-  The cost: old and new switchers live side by side for a while.
+- **SettingsService over a cookie, the old app backends or the account.**
+  - **Why:** one store built for settings. It works on every device and has
+    room for workspace overrides.
+  - **Gave up from a cookie:** no backend work at all.
+  - **Gave up from the old backends:** each app kept its own storage, with no
+    migration.
+  - **Gave up from the account:** one record per person, the simplest model.
+  - **Cost:** the team added static partitions, replication and deletion to
+    SettingsService.
+- **Global replication over the home region or the request region.**
+  - **Why:** reads stay fast everywhere, and a person sees the same settings
+    in every region.
+  - **Gave up:** the home region keeps one copy and the least storage.
+    Replication keeps a copy in every region. The data is small.
+- **An SSR preload over loading the theme in the browser.**
+  - **Why:** the first paint shows the right theme.
+  - **Gave up:** server renders with no extra GraphQL call. The theme code
+    lived in the browser only.
+- **One theme string over a field per setting.**
+  - **Why:** a new setting is a new key with no schema change.
+  - **Gave up:** the backend could query single values.
+- **A flag per app over one switch for every app.**
+  - **Why:** each team picks its pace.
+  - **Gave up:** one switch moves every app on the same day. Old and new
+    switchers live side by side for a while.
 
 ## Delivery
 

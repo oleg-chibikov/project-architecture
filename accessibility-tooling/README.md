@@ -102,17 +102,22 @@ flowchart TD
 
 ## Trade-offs
 
-- **Tests over ESLint `jsx-a11y` and over a crawler on the live site.** ESLint
-  reads source code and misses ARIA set at runtime. A crawler finds a problem
-  after release and misses states behind clicks. A test finds it in the PR
-  that adds it. The cost: a component with no test is invisible to the check.
-  Each scan also adds CI time.
-- **A baseline over failing on every old violation.** The gate goes on and
-  stays on. A PR author is blocked only for what their PR adds. The cost: old
-  debt shrinks slower. The owning team fixes it by a deadline.
-- **axe-core over a manual audit.** axe-core runs on every PR. A manual audit
-  doesn't scale and runs only when someone remembers. The cost: axe-core finds
-  part of WCAG. It can't judge reading order, error text or keyboard flow.
+- **Tests over ESLint `jsx-a11y` and over a crawler on the live site.**
+  - **Why:** a test checks the rendered page in the PR that adds a problem.
+    It also clicks into dialogs and menus.
+  - **Gave up from ESLint:** feedback in the editor while typing, with no CI
+    time. Each scan adds minutes to CI.
+  - **Gave up from a crawler:** it covers pages with no tests. A component
+    with no test is invisible to the check.
+- **A baseline over failing on every old violation.**
+  - **Why:** the gate goes on and stays on. A PR author is blocked only for
+    what their PR adds.
+  - **Gave up:** failing on everything forces old debt down fast. Instead the
+    owning team fixes it by a deadline.
+- **axe-core over a manual audit.**
+  - **Why:** axe-core runs on every PR.
+  - **Gave up:** a person judges reading order, error text and keyboard flow.
+    axe-core finds only part of WCAG.
 
 ## Delivery
 

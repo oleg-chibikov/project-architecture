@@ -114,18 +114,28 @@ flowchart LR
 
 ## Trade-offs
 
-- **Rspack over Vite and over trimming Webpack.** Rspack reads the Webpack
-  config, so the first build took a couple of days. Vite meant a new config
-  and new plugins. Trimming Webpack steps gave no real gain. The cost: each
-  Webpack plugin had to be checked against the Rspack compatibility list.
-- **SWC over Babel.** SWC transpiles about 20 times faster. The cost: a custom
-  Babel plugin has no SWC twin and needs another path.
-- **Selective branch builds over a full build on every branch.** Build time
-  follows the size of the change. The cost: reviewers see only the changed
-  packages and their dependents. A missing dependency in the graph leaves a
-  page out. The full build on main still catches it.
-- **A Webpack fallback over a hard switch.** A flag brings Webpack back in one
-  step. The cost: two pipelines need upkeep until Rspack proves itself.
+- **Rspack over Vite and over trimming Webpack.**
+  - **Why:** Rspack reads the Webpack config, so the first build took a couple
+    of days.
+  - **Gave up from Vite:** a dev server that serves ES modules and starts at
+    once. Vite also has more plugins and a bigger community.
+  - **Gave up from Webpack:** no migration and no new tool to learn.
+  - **Cost:** each Webpack plugin had to be checked against the Rspack
+    compatibility list.
+- **SWC over Babel.**
+  - **Why:** SWC transpiles about 20 times faster.
+  - **Gave up:** Babel plugins are JavaScript, so anyone on the team can write
+    one. SWC plugins are Rust.
+  - **Cost:** a custom Babel plugin has no SWC twin and needs another path.
+- **Selective branch builds over a full build on every branch.**
+  - **Why:** build time follows the size of the change.
+  - **Gave up:** reviewers saw the whole site on every branch. A wrong
+    dependency graph couldn't leave a page out.
+  - **Safety net:** the full build on main still catches a missing page.
+- **A Webpack fallback over a hard switch.**
+  - **Why:** a flag brings Webpack back in one step.
+  - **Gave up:** a hard switch means one pipeline to maintain. Two pipelines
+    need upkeep until Rspack proves itself.
 
 ## Delivery
 

@@ -104,19 +104,27 @@ flowchart LR
 
 ## Trade-offs
 
-- **The sandbox over product apps.** Prototype code stays out of product apps.
-  The cost: moving a prototype into a product app stays engineering work.
-- **Scripts over instructions.** A script behaves the same every run. The
-  cost: a script costs more to change than a line of instructions.
-- **A subagent per phase over one long session.** Each phase runs in a fresh
-  context with its own rules. The cost: a run takes longer and spends more
-  tokens.
-- **Minor over major for visible changes.** Apps get restyles without a major
-  upgrade. The cost: a minor release can look different on screen. Apps that
-  need pixel stability pin exact versions.
-- **Automatic versioning over a person picking the version.** The pipeline
-  diffs the token list against the last release. The cost: it can't judge how
-  dramatic a restyle is. A PR label lets a person escalate to major.
+- **The sandbox over product apps.**
+  - **Why:** prototype code stays out of product apps.
+  - **Gave up:** a prototype in a product app runs with real data and real
+    navigation. It can grow into the feature. From the sandbox, moving it
+    stays engineering work.
+- **Scripts over instructions.**
+  - **Why:** a script behaves the same every run.
+  - **Gave up:** an instruction changes in one line. The agent also bends it
+    to fit an odd case.
+- **A subagent per phase over one long session.**
+  - **Why:** each phase runs in a fresh context with its own rules.
+  - **Gave up:** one session is faster and spends fewer tokens. It remembers
+    what earlier phases learned.
+- **Minor over major for visible changes.**
+  - **Why:** apps get restyles without a major upgrade.
+  - **Gave up:** a major warns an app before its look changes. Apps that need
+    pixel stability pin exact versions.
+- **Automatic versioning over a person picking the version.**
+  - **Why:** the pipeline diffs the token list against the last release.
+  - **Gave up:** a person judges how dramatic a restyle is. A PR label lets a
+    person escalate to major.
 
 ## Delivery
 

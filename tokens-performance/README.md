@@ -93,19 +93,22 @@ flowchart TD
 
 ## Trade-offs
 
-- **Removing fallbacks over leaving them.** The CSS gets smaller. Left alone,
-  it stays large and keeps growing. The cost: where a fallback differed, the
-  page now shows the token's colour. The owning team approved it.
-- **Staged codemods and team PRs over one codemod for every fallback.** Safe
-  edits go fast and risky ones get a review. One codemod changes colours with
-  no review and no flag to undo it. The cost: team PRs waited on each team's
-  review. Each team checked its own pages.
-- **An ESLint rule over a one-off cleanup.** The CSS stays small after the
-  migration ends. The cost: an engineer can't pass a fallback, even for a
-  quick fix.
-- **Visual tests over checking each page by hand.** A test catches a changed
-  colour on every run. The cost: a screen without a test relies on the team's
-  review.
+- **Removing fallbacks over leaving them.**
+  - **Why:** the CSS gets smaller. Left alone, it keeps growing.
+  - **Gave up:** leaving them carries no risk. Every page keeps its exact
+    colours. Where a fallback differed, the owning team approved the token's
+    colour.
+- **Staged codemods and team PRs over one codemod for every fallback.**
+  - **Why:** safe edits go fast and risky ones get a review.
+  - **Gave up:** one codemod finishes in one PR and asks nothing of the
+    teams. Team PRs waited on each team's review.
+- **An ESLint rule over a one-off cleanup.**
+  - **Why:** the CSS stays small after the migration ends.
+  - **Gave up:** an engineer could pass a fallback for a quick fix.
+- **Visual tests over checking each page by hand.**
+  - **Why:** a test catches a changed colour on every run.
+  - **Gave up:** a person looks at every screen, with or without a test.
+    Screens with no test rely on the team's review.
 
 ## Delivery
 
