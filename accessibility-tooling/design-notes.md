@@ -28,10 +28,15 @@ code and the PR that caused it.
 
 ## How the codemod works
 
-- **It reuses each test.** The assertion goes into the existing test, after the
-  component renders.
-- **It writes no new tests.** `toBeAccessible` is one line in each framework.
-- **Adoption is a migration.** Teams review a diff instead of writing tests.
+- **One check in each `describe` block.** Each block sets the component up in
+  its own state, such as an open menu. A check in every block covers the most
+  interactive states.
+- **Setup from `beforeEach`.** When the block has one, the new check runs
+  after it.
+- **Otherwise setup from the first test.** The codemod copies that test up to
+  its first real assertion after a wait. By then the component has rendered and
+  settled.
+- **Teams write no tests.** They review a diff, so adoption is a migration.
 
 ## Baseline
 

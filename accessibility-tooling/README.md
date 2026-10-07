@@ -59,7 +59,7 @@ What happens on each test run:
 
 ```mermaid
 flowchart LR
-  Codemod["Codemod<br/>adds toBeAccessible<br/>to existing tests"] --> Suites["Team test suites"]
+  Codemod["Codemod<br/>adds a check<br/>to each describe block"] --> Suites["Team test suites"]
   Lint["ESLint rule<br/>flags a test file<br/>with no check"] -.-> Suites
   Suites --> Axe["axe-core scans<br/>the rendered component"]
   Axe --> Compare{"In the baseline?"}
@@ -76,7 +76,7 @@ How a repo comes on board:
 
 ```mermaid
 flowchart TD
-  Run["Run the codemod<br/>the check goes into each test"] --> Base["First run records<br/>existing violations as the baseline"]
+  Run["Run the codemod<br/>a check in each describe block"] --> Base["First run records<br/>existing violations as the baseline"]
   Base --> Gate["New violations block CI"]
   Base --> Tickets["Existing violations<br/>become EngHealth tickets"]
   Tickets --> Fix["Owning team fixes them<br/>before the deadline"]
@@ -88,8 +88,9 @@ flowchart TD
 
 - **Tests as the gate.** Tests already ran on every PR and already blocked CI.
   The check joined a gate teams already trusted.
-- **A codemod does the adoption.** Teams wrote no new tests. The codemod put the
-  check into existing ones, so adoption was a migration.
+- **A codemod does the adoption.** It added a check to each `describe` block
+  and reused the block's setup. Teams wrote no tests, so adoption was a
+  migration.
 - **Baseline, then block new.** Old violations don't fail the build. A new one
   does.
 - **One API, framework idioms.** `toBeAccessible` reads the same everywhere. Each
@@ -118,8 +119,9 @@ flowchart TD
    `violationsBaseline` list and fails a test on anything new. Each framework
    registers its matcher with one call. Playwright and visual regression got
    new matchers, and exemptions got a schema and API.
-2. **Codemods.** They added the check to each component under test, ran it and
-   recorded the baseline.
+2. **Codemods.** They added a check to each `describe` block, ran it and
+   recorded the baseline. The setup came from `beforeEach` or from the first
+   test up to its first real assertion after a wait.
 3. **Pilot.** The codemod ran on pilot packages before the rest.
 4. **Enforce.** A warning ESLint rule flags a test file with no check. A
    package not on board yet gets a suppression. Each suppression gets an
