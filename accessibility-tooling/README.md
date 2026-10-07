@@ -1,8 +1,8 @@
-# Accessibility tooling: interview notes
+# Accessibility tooling
 
 [Back to all projects](../README.md)
 
-Likely questions with short answers are in [questions.md](./questions.md).
+The reasoning behind the main choices is in [design-notes.md](./design-notes.md).
 
 A codemod added an accessibility check to the tests teams already had. A new
 violation fails CI. An existing one becomes a Jira ticket with a deadline.
@@ -29,7 +29,7 @@ violation fails CI. An existing one becomes a Jira ticket with a deadline.
 - **EngHealth.** An internal tool that already existed. It maps a failure to a
   place in the code and a Jira ticket for the owning team.
 - **The ask.** Measure how compliant the products are and give teams a way to
-  improve. The target was WCAG 2.1 AA (a guess, confirm).
+  improve.
 
 ## My ownership
 
@@ -115,7 +115,8 @@ flowchart TD
   baselines.
 - **Tracking.** A report pipeline into EngHealth, then dashboards.
 - **Enforcement.** An ESLint rule flags a relevant test file with no check.
-- **Rollout.** Fill in the pilot team and the order the rest came on board.
+- **Rollout.** Each repo ran the codemod, recorded its baseline, then turned
+  the gate on.
 
 ## Risk
 
@@ -124,9 +125,6 @@ flowchart TD
 - **Teams switching the check off.** A green day one gave them little reason
   to.
 - **Skipping the check.** The ESLint rule flags test files that leave it out.
-- **axe-core upgrades.** A new version adds rules and can fail every repo at
-  once. Fill in how re-baselining worked.
-- **Suppressions as a loophole.** Fill in who could suppress, and for how long.
 
 ## Validation
 
@@ -137,13 +135,12 @@ flowchart TD
 
 ## Metrics
 
-Fill in your numbers before the interview:
+How success is measured:
 
 - **Adoption.** Teams and repos on board, share of test files with the check.
-- **Debt.** Violations in the first baseline and now.
-- **Gate.** PRs blocked by a new violation.
-- **Remediation.** Tickets closed before the deadline, time to fix.
-- **Cost.** CI time the scans added.
+- **Debt.** Violations in the first baseline against today.
+- **Gate.** PRs stopped by a new violation.
+- **Remediation.** Tickets closed before their deadline.
 
 ## Failure
 
@@ -151,8 +148,6 @@ Fill in your numbers before the interview:
   small decisions. His feedback: work more on my own and own the project.
 - **What changed.** I started bringing a proposal with trade-offs instead of a
   question. We wrote a RACI matrix, and talks moved to the key decisions only.
-- **A technical failure.** Fill in one, such as a false new violation after a
-  refactor.
 
 ## Lessons
 

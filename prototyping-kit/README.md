@@ -1,4 +1,4 @@
-# Prototyping kit: interview notes
+# Prototyping kit
 
 [Back to all projects](../README.md)
 
@@ -151,13 +151,13 @@ flowchart LR
 
 ## Metrics
 
-Fill in your numbers before the interview:
+How the kit's success is measured:
 
-- **Adoption.** Prototypes built, and how many authors built them.
-- **Speed.** Time from ask to Sandpit link. The build step alone takes 5 to 20
+- **Adoption.** Prototypes built, and the number of authors who built them.
+- **Speed.** Time from ask to Sandpit link. The build step takes 5 to 20
   minutes.
-- **Quality.** Share of parts engineers rated keep.
-- **Kit health.** Findings filed per run, and how many got fixed.
+- **Quality.** Share of prototype parts engineers rate keep.
+- **Kit health.** Findings filed per run, and the share that got fixed.
 
 ## Failure
 
