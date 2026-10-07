@@ -162,13 +162,16 @@ flowchart LR
 
 ## Metrics
 
-How the kit's success is measured:
+Success means designers and PMs ship working prototypes, and engineers keep the
+code.
 
-- **Adoption.** Prototypes built, and the number of authors who built them.
-- **Speed.** Time from ask to Sandpit link. The build step takes 5 to 20
-  minutes.
-- **Quality.** Share of prototype parts engineers rate keep.
-- **Kit health.** Findings filed per run, and the share that got fixed.
+| Signal | Good looks like | Why |
+| --- | --- | --- |
+| Prototypes and their authors | Both grow, with designers and PMs among the authors | People with no dev setup build in code |
+| Time from ask to Sandpit link | Minutes. The build step takes 5 to 20 | Ideas are cheap to try |
+| Prototype parts engineers rate keep | A growing share | Engineers stop rebuilding screens from scratch |
+| Findings filed per run | Fall over time | The kit gets fewer things wrong |
+| Findings fixed | Most of them | A problem gets fixed once, in the kit |
 
 ## Failure
 

@@ -173,11 +173,13 @@ All of it fit around the deadlines of my main project.
 
 ## Metrics
 
-| Metric | Before | After |
+Success means a fast build that doesn't fail and costs less.
+
+| Signal | Good looks like | Result |
 | --- | --- | --- |
-| Build time | 1 to 2 hours | About 7 minutes, around 95% less |
-| CI cost | Growing with build time | About US$45,000 less per quarter, US$180,000 a year |
-| Recurring CI failures | Frequent timeouts | Gone |
+| Build time | Minutes | About 7 minutes, down from 1 to 2 hours |
+| CI cost | Falls with build time | About US$45,000 less per quarter, US$180,000 a year |
+| Recurring CI failures | None | The timeouts stopped |
 
 ## Failure
 

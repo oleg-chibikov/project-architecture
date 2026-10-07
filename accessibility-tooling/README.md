@@ -159,12 +159,14 @@ flowchart TD
 
 ## Metrics
 
-How success is measured:
+Success means no new violation gets in, and the old ones go down.
 
-- **Adoption.** Teams and repos on board, share of test files with the check.
-- **Debt.** Violations in the first baseline against today.
-- **Gate.** PRs stopped by a new violation.
-- **Remediation.** Tickets closed before their deadline.
+| Signal | Good looks like | Why |
+| --- | --- | --- |
+| Teams, repos and test files with the check | Grows | The check guards only the tests that call it |
+| Violations against the first baseline | Fall | The old debt gets paid off |
+| PRs stopped by a new violation | Some at first, then fewer | The gate works, then teams learn to avoid violations |
+| Tickets closed before their deadline | Most of them | Owners fix what EngHealth assigns them |
 
 ## Failure
 

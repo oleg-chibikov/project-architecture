@@ -164,11 +164,13 @@ flowchart TD
 
 ## Metrics
 
-| Metric | Result |
-| --- | --- |
-| CSS size | Up to 90 KB less, gzipped |
-| LCP on core product pages | About 3% better |
-| Broken experiences | None |
+Success means less CSS and faster pages, with no broken screens.
+
+| Signal | Good looks like | Result |
+| --- | --- | --- |
+| CSS size | Falls | Up to 90 KB less, gzipped |
+| LCP on core product pages | Improves | About 3% better |
+| Broken experiences | None | None |
 
 ## Failure
 
