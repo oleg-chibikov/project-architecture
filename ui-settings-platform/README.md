@@ -185,13 +185,14 @@ How success is measured:
 ## Failure
 
 - **I put global settings in one partition.** The first schema kept all global
-  settings in a single partition in one region.
-- **The dashboard caught it.** In team testing, US teammates got faster answers
-  than AU ones.
+  settings in a single partition in a US region.
+- **The dashboard caught it.** In team testing, AU teammates waited on long
+  round trips to the US.
 - **The fix.** Global replication: a config change in ERS and the region passed
   in the query. Per-region storage and storage by request region lost on
   latency or consistency.
-- **The result.** Fixed before company-wide dogfooding, with no data migration.
+- **The result.** I found it before release, so no customer was affected. The
+  fix landed before company-wide dogfooding, with no data migration.
   Latency met the SLOs for every region, and the feature shipped on time.
 
 ## Lessons

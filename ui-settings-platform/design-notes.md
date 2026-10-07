@@ -49,8 +49,9 @@ The team added the missing parts to SettingsService:
 
 ## Fixing cross-region latency
 
-Team testing showed US teammates got faster answers than AU ones. All global
-settings sat in one partition in one region.
+Team testing showed AU teammates waiting on long round trips to the US. All
+global settings sat in one partition in a US region. I found it before
+release, so no customer was affected.
 
 | Option | Good at | Misses |
 | --- | --- | --- |
