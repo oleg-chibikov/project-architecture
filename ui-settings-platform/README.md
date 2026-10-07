@@ -42,8 +42,8 @@ paint already has the right theme.
   with Design System, backend, design, content and product teams.
 - **Hands on.** I wrote backend code in Java and frontend code. I built the
   GraphQL API with its tests.
-- **Product integration.** I used AI to write much of the integration code in
-  the product codebases. Partner teams had far less to build.
+- **Product integration.** I wrote much of the integration code in the
+  product codebases. Partner teams had far less to build.
 - **Knowledge sharing.** I presented the design at the Regional Design Review
   and taught backend and GraphQL inside the Design System team. I mentored an
   intern who built increased contrast mode.
@@ -219,8 +219,8 @@ How success is measured:
 - **Add observability before testing.** The dashboard found the latency before
   people outside the team did.
 - **Contracts and a mock API first.** Frontend and backend moved in parallel.
-- **Do the integration for partner teams.** AI made writing it in each product
-  codebase cheap. Partner teams reviewed it instead of building it.
+- **Do the integration for partner teams.** Partner teams reviewed the code
+  in their products instead of building it.
 - **Bring feedback to a design debate.** Product teams' feedback and the
   Pollinator risk moved the designer from a modal to a spotlight.
 
