@@ -87,6 +87,32 @@ change.
 - **Order.** Team dogfooding, then company-wide dogfooding, then a percentage
   rollout to customers.
 
+## The intern project: increased contrast mode
+
+### Picking the project
+
+- **The first idea was too big.** A principal engineer suggested restructuring
+  the design system site for LLMs. The scope was unclear and it hung on other
+  teams' timelines.
+- **Increased contrast mode won.** It had a clear outcome for 3 months. It sat
+  next to the settings work, so I could guide it.
+- **It was still real work.** Several codebases, several teams and reviews from
+  outside owners.
+- **It stayed off the critical path.** A delay couldn't put the release at
+  risk.
+
+### Guiding the intern
+
+- **Plan.** I set the scope, timeline and milestones with the intern
+  coordinator.
+- **People.** I connected the intern with the teams and reviewers they needed.
+- **Feedback.** The intern polished past what a milestone needed. I explained
+  that hitting milestones came first, and the intern adjusted.
+- **Assessment.** I ran the midpoint and final assessments and sat on the
+  hiring committee.
+- **Result.** The intern shipped increased contrast mode with a strong rating.
+  They were on track for a permanent role.
+
 ## What I would change
 
 - **Plan for regions from day one.** The single global partition cost a

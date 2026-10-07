@@ -44,8 +44,11 @@ code and the PR that caused it.
 
 ### Matching violations across runs
 
-- **File and line are too fragile.** A refactor would lose old violations or
-  invent new ones.
+- **The baseline sits in the test.** The `violationsBaseline` parameter lists
+  the violations that test already has. Moving code around the file leaves it
+  as it is.
+- **EngHealth matches on file, line and issue type.** That key came with the
+  existing engine. A shifted line can close one ticket and open another.
 - **The two mistakes cost differently.** A missed regression ships a real
   problem. A false new violation costs the author a few minutes.
 
@@ -56,7 +59,9 @@ code and the PR that caused it.
 - **Old debt has an owner.** EngHealth puts each existing violation on the
   owning team's backlog, with a deadline by severity.
 - **Lint keeps the check in.** An ESLint rule flags a relevant test file with
-  no check.
+  no check. It starts as a warning.
+- **Suppressions ratchet.** A package not on board yet suppresses the rule.
+  Each suppression gets an EngHealth ticket, so it doesn't stay forgotten.
 
 ## Limits
 
@@ -70,7 +75,8 @@ code and the PR that caused it.
 
 ## What I would change
 
-- **Baseline matching.** Fewer false new violations after a refactor.
+- **Ticket matching.** A key that survives a shifted line, so a refactor
+  doesn't churn EngHealth tickets.
 - **Coverage.** Checks beyond what axe-core finds.
 - **One backlog.** Manual audit findings in EngHealth next to the automated
   ones.

@@ -65,10 +65,10 @@ flowchart LR
   Axe --> Compare{"In the baseline?"}
   Compare -->|no, new| Fail["CI fails<br/>the PR author fixes it"]
   Compare -->|yes, existing| Pass["CI passes"]
-  Axe --> Report["Report pipeline<br/>new and existing violations"]
-  Report --> EH["EngHealth<br/>code location and owning team"]
+  Axe --> Report["On master<br/>stats to Databricks<br/>full list to S3"]
+  Report --> EH["EngHealth daily job<br/>file, line, issue type, team"]
   EH --> Ticket["Jira ticket<br/>deadline by severity"]
-  EH --> Dash["Dashboards<br/>adoption and violations"]
+  Report --> Dash["A11y dashboard<br/>teams, trends, worst components"]
 ```
 
 How a repo comes on board:
@@ -111,14 +111,19 @@ flowchart TD
 
 ## Delivery
 
-- **Shared API.** `toBeAccessible` on top of axe-core, in the shared tooling for
-  each framework.
-- **Codemods.** They added the check to existing test files and recorded the
-  baselines.
-- **Tracking.** A report pipeline into EngHealth, then dashboards.
-- **Enforcement.** An ESLint rule flags a relevant test file with no check.
-- **Rollout.** Each repo ran the codemod, recorded its baseline, then turned
-  the gate on.
+1. **Move to the platform.** A shared axe-core wrapper takes a
+   `violationsBaseline` list and fails a test on anything new. Each framework
+   registers its matcher with one call. Playwright and visual regression got
+   new matchers, and exemptions got a schema and API.
+2. **Codemods.** They added the check to each component under test, ran it and
+   recorded the baseline.
+3. **Pilot.** The codemod ran on pilot packages before the rest.
+4. **Enforce.** A warning ESLint rule flags a test file with no check. A
+   package not on board yet gets a suppression. Each suppression gets an
+   EngHealth ticket.
+5. **Track.** On master the wrapper sends stats to Databricks and the full list
+   to S3. A daily job passes the list to EngHealth. EngHealth files tickets for
+   the owning team.
 
 ## Risk
 
@@ -127,10 +132,14 @@ flowchart TD
 - **Teams switching the check off.** A green day one gave them little reason
   to.
 - **Skipping the check.** The ESLint rule flags test files that leave it out.
+- **Flaky scans.** In Playwright, color contrast failed at random while CSS
+  transitions were still running. The check now waits for animations to end.
 
 ## Validation
 
-- **Dashboards.** Adoption per team and violations over time.
+- **A11y dashboard.** Daily reports from Databricks. It shows each team's
+  violations over time, the error types and the components that need the most
+  work.
 - **EngHealth.** Tickets closed against their deadline.
 - **The limit.** A violation count is a proxy. Proof of a better experience
   needs an audit or fewer user complaints.
