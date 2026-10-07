@@ -10,3 +10,6 @@
 - [Build pipeline optimisation](./build-pipeline/README.md): the Atlaskit
   website build went from 1 to 2 hours to about 7 minutes with Rspack and
   selective branch builds.
+- [Tokens performance](./tokens-performance/README.md): codemods removed
+  hard-coded fallbacks from design token calls. Pages ship up to 90 KB less
+  CSS.
