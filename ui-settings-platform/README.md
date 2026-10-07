@@ -214,12 +214,15 @@ rollout.
 
 ## Metrics
 
-How success is measured:
+Success means more people pick a theme, and each person picks it once.
 
-- **Adoption.** Apps with the flag on and people who changed their theme.
-- **Onboarding.** Spotlight views against theme changes.
-- **Latency.** Against the old theme APIs and the SLOs in every region.
-- **Errors.** API error rate and alerts fired.
+| Signal | Good looks like | Why |
+| --- | --- | --- |
+| People with a theme they picked | Grows | People find the switcher |
+| Theme changes per person | Falls | One change reaches every app. Before, people set it in each app |
+| Global changes against workspace overrides | Most changes are global | Many overrides would mean people want a theme per app |
+| Spotlight views against theme changes | A steady share of viewers change the theme | The spotlight does its job without a modal |
+| Latency and errors | At or under the old theme APIs and the SLOs in every region | The theme is on the critical path of every page |
 
 ## Failure
 
