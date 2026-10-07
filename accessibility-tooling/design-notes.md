@@ -91,3 +91,7 @@ code and the PR that caused it.
 - **Coverage.** Checks beyond what axe-core finds.
 - **One backlog.** Manual audit findings in EngHealth next to the automated
   ones.
+- **Manager scorecards.** One view per team of open violations, overdue tickets
+  and suppressed rules. Suppressions already get their own tickets, so the data
+  is there. The head of engineering sees which teams skip accessibility and
+  follows up with them.
