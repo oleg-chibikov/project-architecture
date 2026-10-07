@@ -114,16 +114,18 @@ flowchart LR
 
 ## Trade-offs
 
-- **Rspack supports most Webpack plugins.** Each plugin in the config had to
-  be checked against its compatibility list.
-- **SWC replaces Babel.** A custom Babel plugin has no SWC twin and needs
-  another path.
-- **A branch build shows part of the site.** Reviewers see the changed
-  packages and their dependents. Main builds the rest.
-- **The dependency graph must be right.** A missing dependency leaves a page
-  out of the branch build. The full build on main still catches it.
-- **Two pipelines for a while.** Webpack stays as a fallback until Rspack
-  proves itself, and both need upkeep.
+- **Rspack over Vite and over trimming Webpack.** Rspack reads the Webpack
+  config, so the first build took a couple of days. Vite meant a new config
+  and new plugins. Trimming Webpack steps gave no real gain. The cost: each
+  Webpack plugin had to be checked against the Rspack compatibility list.
+- **SWC over Babel.** SWC transpiles about 20 times faster. The cost: a custom
+  Babel plugin has no SWC twin and needs another path.
+- **Selective branch builds over a full build on every branch.** Build time
+  follows the size of the change. The cost: reviewers see only the changed
+  packages and their dependents. A missing dependency in the graph leaves a
+  page out. The full build on main still catches it.
+- **A Webpack fallback over a hard switch.** A flag brings Webpack back in one
+  step. The cost: two pipelines need upkeep until Rspack proves itself.
 
 ## Delivery
 
