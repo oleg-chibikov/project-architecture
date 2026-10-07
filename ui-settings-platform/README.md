@@ -68,7 +68,7 @@ flowchart LR
 The parts and how they connect:
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph Apps["Jira, Confluence, Home, Studio"]
     Spot["Onboarding spotlight<br/>sent by PostOffice"] --> Switcher["ThemeSwitcher"]
     Switcher --> Provider["ThemeProvider<br/>theme state<br/>localStorage fallback"]
