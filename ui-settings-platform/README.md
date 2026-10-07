@@ -106,8 +106,11 @@ sequenceDiagram
   Browser->>Server: open a page
   Server->>GQL: preloadTheme (Relay loadQuery)
   GQL->>Settings: getResolvedTheme
-  Settings->>DB: read global and workspace themes
-  DB-->>Settings: themes
+  Settings->>DB: read the global theme
+  DB-->>Settings: global theme
+  Settings->>DB: read the workspace theme
+  DB-->>Settings: workspace theme
+  Settings->>Settings: merge them, the workspace value wins
   Settings-->>GQL: resolved theme
   GQL-->>Server: resolved theme
   Server-->>Browser: HTML with the theme in bootstrap data
