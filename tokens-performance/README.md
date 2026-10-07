@@ -38,14 +38,21 @@ fallbacks.
 
 ## My ownership
 
+- **Found the problem.** A performance review pointed at CSS size on core
+  pages. In the CSS bundle I saw the same token rules repeated with different
+  fallbacks.
+- **Took it on.** Tokens sat with my team, the design system team. No one was
+  working on the fallbacks, and the fix looked cheap for the gain.
+- **Sold it to management.** I measured the CSS bytes fallbacks added per page
+  and estimated the LCP gain. I showed the duplicated CSS on a real page and
+  tied the work to the company performance goal. Staged codemods kept the risk
+  low.
 - **Led the migration.** I planned the stages and wrote the codemod with
-  jscodeshift, a tool that edits code through its syntax tree.
-- **Ran the analysis.** I compared each fallback with its token's real value.
-  The result decided what the codemod could remove on its own.
-- **Worked with product teams.** Each team reviewed and merged the PR for its
-  own code.
-- **Locked it in.** I wrote the ESLint rule that blocks new fallbacks.
-- **Measured the result.** CSS analysis scripts and Criterion tests.
+  jscodeshift, a tool that edits code through its syntax tree. I compared each
+  fallback with its token's real value to decide what the codemod could remove
+  on its own. Each product team reviewed and merged the PR for its own code.
+- **Locked it in and measured.** I wrote the ESLint rule that blocks new
+  fallbacks. CSS analysis scripts and Criterion tests measured the result.
 
 ## Architecture
 
