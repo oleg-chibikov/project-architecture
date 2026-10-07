@@ -37,16 +37,21 @@ paint already has the right theme.
 
 ## My ownership
 
-- **Feature lead.** I owned the architecture and delivery end to end.
+- **Feature lead.** I owned the architecture and delivery end to end. I led 2
+  mid-level engineers, an intern and a designer.
+  - **Backend.** One engineer helped me build it.
+  - **Product rollout.** The other engineer helped integrate each product.
+  - **Increased contrast mode.** The intern built it.
 - **Decisions with stakeholders.** I ran the data model and design decisions
   with Design System, backend, design, content and product teams.
 - **Hands on.** I wrote backend code in Java and frontend code. I built the
   GraphQL API with its tests.
-- **Product integration.** I wrote much of the integration code in the
-  product codebases. Partner teams had far less to build.
+- **Product integration.** The rollout engineer and I wrote much of the
+  integration code in the product codebases. Partner teams had far less to
+  build.
 - **Knowledge sharing.** I presented the design at the Regional Design Review
-  and taught backend and GraphQL inside the Design System team. I mentored an
-  intern who built increased contrast mode.
+  and taught backend and GraphQL inside the Design System team. I mentored the
+  intern.
 
 ## Architecture
 
