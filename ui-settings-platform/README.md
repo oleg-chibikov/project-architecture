@@ -237,6 +237,21 @@ Success means more people pick a theme, and each person picks it once.
   fix landed before company-wide dogfooding, with no data migration.
   Latency met the SLOs for every region, and the feature shipped on time.
 
+## Conflict: modal or spotlight
+
+- **The disagreement.** The designer wanted a full-page modal to announce the
+  new switcher. I expected it to get in the way on product pages.
+- **Feedback first.** I asked the product teams and brought their concerns to
+  the designer. The modal was intrusive, could break Pollinator synthetic tests
+  and would skew page metrics.
+- **Criteria before options.** We agreed on what onboarding had to do. People
+  find the switcher, work goes on, and tests and metrics stay intact.
+- **The result.** The spotlight met all three, and the designer agreed to it.
+  It ships through PostOffice like the rest of the onboarding.
+
+The options side by side are in the
+[design notes](./design-notes.md#onboarding-spotlight-or-modal).
+
 ## Lessons
 
 - **Know where users are.** Their regions go into the architecture plan from
