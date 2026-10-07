@@ -122,16 +122,20 @@ The GraphQL operations:
 
 ## Trade-offs
 
-- **Global replication** keeps a copy of global settings in every region. The
-  data is small, and reads stay fast everywhere.
-- **The SSR preload** adds a GraphQL call to each server render. In return the
-  first paint is right.
-- **The localStorage fallback** shows the last known theme when the API fails.
-  On a new device that is the default.
-- **One serialized theme string** takes a new setting as a new key. The backend
-  can't query single values inside it.
-- **A flag per app** lets each team pick its pace. Old and new switchers live
-  side by side for a while.
+- **SettingsService over a cookie, the old app backends or the account.** A
+  cookie lives in one browser. Synced backends drift apart. The account has no
+  room for workspace overrides. The cost: the team had to add static
+  partitions, replication and deletion to SettingsService.
+- **Global replication over the home region or the request region.** Reads
+  stay fast everywhere. The home region is slow when a person travels. The
+  request region shows different settings in each region. The cost: a copy in
+  every region, and the data is small.
+- **An SSR preload over loading the theme in the browser.** The first paint
+  shows the right theme. The cost: a GraphQL call in each server render.
+- **One theme string over a field per setting.** A new setting is a new key
+  with no schema change. The cost: the backend can't query single values.
+- **A flag per app over one switch for every app.** Each team picks its pace.
+  The cost: old and new switchers live side by side for a while.
 
 ## Delivery
 

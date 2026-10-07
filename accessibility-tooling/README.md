@@ -102,16 +102,17 @@ flowchart TD
 
 ## Trade-offs
 
-- **The baseline** lets the gate go on and stay on. Old debt shrinks slower.
-- **Tests over a crawler on the live site.** A crawler finds a problem after
-  release. A test finds it in the PR that adds it. A crawler reaches a dialog
-  only if someone scripts the clicks. Tests already make those clicks. The cost:
-  a component with no test is invisible to the check.
-- **axe-core finds part of WCAG.** It can't judge reading order, error text or
-  keyboard flow. It is the automated floor.
-- **Each scan costs CI time.** At this scale the extra minutes add up.
-- **Deadlines for old debt.** A PR author is blocked only for what their PR
-  adds. The owning team fixes the rest.
+- **Tests over ESLint `jsx-a11y` and over a crawler on the live site.** ESLint
+  reads source code and misses ARIA set at runtime. A crawler finds a problem
+  after release and misses states behind clicks. A test finds it in the PR
+  that adds it. The cost: a component with no test is invisible to the check.
+  Each scan also adds CI time.
+- **A baseline over failing on every old violation.** The gate goes on and
+  stays on. A PR author is blocked only for what their PR adds. The cost: old
+  debt shrinks slower. The owning team fixes it by a deadline.
+- **axe-core over a manual audit.** axe-core runs on every PR. A manual audit
+  doesn't scale and runs only when someone remembers. The cost: axe-core finds
+  part of WCAG. It can't judge reading order, error text or keyboard flow.
 
 ## Delivery
 

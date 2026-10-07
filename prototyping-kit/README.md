@@ -104,16 +104,19 @@ flowchart LR
 
 ## Trade-offs
 
-- **Sandbox only** keeps product teams safe. Moving a prototype into a product
-  app stays engineering work.
-- **Scripts** behave the same every run. They cost more to change than a line
-  of instructions.
-- **Subagents** keep each phase focused. A run takes longer and spends more
+- **The sandbox over product apps.** Prototype code stays out of product apps.
+  The cost: moving a prototype into a product app stays engineering work.
+- **Scripts over instructions.** A script behaves the same every run. The
+  cost: a script costs more to change than a line of instructions.
+- **A subagent per phase over one long session.** Each phase runs in a fresh
+  context with its own rules. The cost: a run takes longer and spends more
   tokens.
-- **Minor for visible changes** means a minor release can look different on
-  screen. Apps that need pixel stability pin exact versions.
-- **Automatic versioning** can't judge how dramatic a restyle is. A PR label
-  lets a person escalate to major.
+- **Minor over major for visible changes.** Apps get restyles without a major
+  upgrade. The cost: a minor release can look different on screen. Apps that
+  need pixel stability pin exact versions.
+- **Automatic versioning over a person picking the version.** The pipeline
+  diffs the token list against the last release. The cost: it can't judge how
+  dramatic a restyle is. A PR label lets a person escalate to major.
 
 ## Delivery
 
