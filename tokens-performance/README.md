@@ -31,8 +31,9 @@ fallbacks.
   theme hasn't set the variable.
 - **Tokens Babel plugin.** It rewrites `token()` calls at build time. Most
   products had it, some didn't.
-- **Several repositories.** The tokens package is shared. Products in other
-  repositories call `token()` too.
+- **Two kinds of consumers.** Products in the monorepo use the tokens package
+  from source, so a change reaches them on merge. Products in other
+  repositories install a published version.
 - **Test tools.** Visual regression tests compare page screenshots. Criterion
   is the company's tool for page performance tests.
 
@@ -126,7 +127,10 @@ flowchart TD
    value in broad runs.
 4. **Team PRs for the rest.** A script grouped risky calls by owning team and
    opened the PRs.
-5. **Lock it in and measure.** The ESLint rule went on. CSS analysis and
+5. **Verify the monorepo, release a major.** I checked each of the 5 to 7
+   products in the monorepo before merging. Products outside it got the
+   change in a new major version.
+6. **Lock it in and measure.** The ESLint rule went on. CSS analysis and
    Criterion measured the gain.
 
 ## Risk
@@ -139,6 +143,9 @@ flowchart TD
   them. The plugin went in before any of their fallbacks went out.
 - **Regrowth.** New fallbacks would bring the CSS back. The ESLint rule blocks
   them.
+- **Two kinds of consumers.** Monorepo products get a change the moment it
+  merges. I checked each of them first. Products in other repositories saw no
+  change until they upgraded to the new major.
 
 ## Validation
 
