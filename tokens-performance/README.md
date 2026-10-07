@@ -96,8 +96,11 @@ flowchart TD
   and opened a PR for each. The team knows its own pages best.
 - **An ESLint rule after the cleanup.** The rule fails lint on a new fallback.
   The CSS stays small after the migration ends.
-- **Measure on real pages.** CSS size shows the bytes saved. Criterion shows
-  whether people get the page faster.
+- **Measure on one full run.** Many teams shipped changes at the same time,
+  and the removals landed in many PRs. Production numbers mixed all of it. I
+  applied every removal in one separate build that didn't merge. Its bundle
+  size against the build before gave the saving. Criterion shows whether
+  people get the page faster.
 
 ## Trade-offs
 
@@ -132,8 +135,8 @@ flowchart TD
 5. **Verify the monorepo, release a major.** I checked each of the 5 to 7
    products in the monorepo before merging. Products outside it got the
    change in a new major version.
-6. **Lock it in and measure.** The ESLint rule went on. CSS analysis and
-   Criterion measured the gain.
+6. **Lock it in and measure.** The ESLint rule went on. A separate full run
+   with every removal gave the bundle size saving. Criterion measured LCP.
 
 ## Risk
 
@@ -155,7 +158,8 @@ flowchart TD
 - **Babel plugin checks.** Each product had the plugin before its fallbacks
   went.
 - **Team review.** Each team checked and merged its own PR.
-- **CSS analysis scripts.** Gzipped CSS size before and after.
+- **CSS analysis scripts.** Gzipped CSS size of one full run with every
+  removal, against the build before.
 - **Criterion tests.** LCP on core product pages.
 
 ## Metrics
