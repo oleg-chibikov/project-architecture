@@ -42,13 +42,24 @@ code and the PR that caused it.
 - **Fairness.** A PR fails for what it adds. Old debt goes to the team that owns
   it, with a deadline.
 
+### Finding the component behind a violation
+
+- **The test file points at the wrong place.** A violation inside a shared
+  button shows up in every test that renders the button.
+- **React Fiber knows who rendered the node.** The wrapper walks up the Fiber
+  tree from the failing DOM node to its component.
+- **Duplicates collapse.** Many test failures from one design system component
+  become one ticket.
+- **Ownership is right.** The ticket goes to the team that owns the component.
+  The teams whose tests caught it get nothing to fix.
+
 ### Matching violations across runs
 
 - **The baseline sits in the test.** The `violationsBaseline` parameter lists
   the violations that test already has. Moving code around the file leaves it
   as it is.
-- **EngHealth matches on file, line and issue type.** That key came with the
-  existing engine. A shifted line can close one ticket and open another.
+- **EngHealth matches on file, line and issue type.** The file and line come
+  from the component. A shifted line can close one ticket and open another.
 - **The two mistakes cost differently.** A missed regression ships a real
   problem. A false new violation costs the author a few minutes.
 

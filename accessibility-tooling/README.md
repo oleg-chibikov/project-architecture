@@ -65,8 +65,9 @@ flowchart LR
   Axe --> Compare{"In the baseline?"}
   Compare -->|no, new| Fail["CI fails<br/>the PR author fixes it"]
   Compare -->|yes, existing| Pass["CI passes"]
-  Axe --> Report["On master<br/>stats to Databricks<br/>full list to S3"]
-  Report --> EH["EngHealth daily job<br/>file, line, issue type, team"]
+  Axe --> Fiber["React Fiber<br/>finds the component<br/>behind each violation"]
+  Fiber --> Report["On master<br/>stats to Databricks<br/>full list to S3"]
+  Report --> EH["EngHealth daily job<br/>component file, line,<br/>issue type, owner"]
   EH --> Ticket["Jira ticket<br/>deadline by severity"]
   Report --> Dash["A11y dashboard<br/>teams, trends, worst components"]
 ```
@@ -93,8 +94,10 @@ flowchart TD
   does.
 - **One API, framework idioms.** `toBeAccessible` reads the same everywhere. Each
   framework keeps its own way to render.
-- **Reuse EngHealth.** It already linked failures to code and owners, so the
-  team built no new tracker.
+- **Attribute to the component.** React Fiber leads from the failing DOM node to
+  the component that rendered it. EngHealth gets that component's file and
+  owner. A design system bug seen in many tests becomes one ticket for the
+  design system team.
 
 ## Trade-offs
 
