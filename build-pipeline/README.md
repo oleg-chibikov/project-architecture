@@ -59,20 +59,27 @@ flowchart LR
   Before --> After
 ```
 
-How a build picks its packages and its bundler:
+How a build picks its packages and its bundler, in CI and on a laptop:
 
 ```mermaid
 flowchart TD
-  Branch["Branch commit"] --> Graph["Monorepo dependency graph"] --> Affected["Changed packages<br/>and packages that depend on them"]
-  Main["Main branch commit"] --> All["Every package"]
-  Affected --> Flag{"Pipeline feature flag"}
-  All --> Flag
-  Flag -->|on| Rspack["Rspack"]
-  Flag -->|off| Webpack["Webpack fallback"]
-  Rspack --> Site["Site: docs, changelogs, examples"]
-  Webpack --> Site
-  Site --> Bifrost["Bifrost staging"]
-  Site --> Micros["Micros production"]
+  subgraph CI["CI pipeline"]
+    Branch["Branch commit"] --> Graph["Monorepo dependency graph"] --> Affected["Changed packages<br/>and packages that depend on them"]
+    Main["Main branch commit"] --> All["Every package"]
+    Affected --> Flag{"Pipeline feature flag"}
+    All --> Flag
+    Flag -->|on| Rspack["Rspack"]
+    Flag -->|off| Webpack["Webpack fallback"]
+    Rspack --> Site["Site: docs, changelogs, examples"]
+    Webpack --> Site
+    Site --> Bifrost["Bifrost staging"]
+    Site --> Micros["Micros production"]
+  end
+  subgraph Local["Local development"]
+    Start["yarn start"] --> StartPkg["Start package"] --> LocalFlag{"Local feature flag"}
+    LocalFlag -->|on| LocalRspack["Rspack build"]
+    LocalFlag -->|off| LocalWebpack["Webpack build"]
+  end
 ```
 
 How the investigation found the cause:
@@ -99,8 +106,10 @@ flowchart LR
 - **Selective branch builds.** A branch builds only the packages it changes
   and the packages that depend on them. Build time follows the size of the
   change.
-- **A feature flag on the pipeline.** The flag picks Rspack or Webpack.
-  Turning it off brings the old build back in one step.
+- **Feature flags on CI and local builds.** The pipeline flag picks Rspack or
+  Webpack in CI. On a laptop `yarn start` calls a start package. The package
+  reads a separate flag and runs the Rspack or the Webpack build. Turning a
+  flag off brings the old build back in one step.
 
 ## Trade-offs
 
